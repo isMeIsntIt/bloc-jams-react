@@ -46,15 +46,14 @@ class Album extends Component {
     }
 
     toggleSongHover(){
-        console.log(this.state.songHover);
+        console.log( this.state.songHover);
         this.setState(prevState => ({
             songHover: !prevState.songHover
-        }));
-        if (this.state.songHover) {
-            console.log('hover');
-        } else {
-            console.log('no hover');
+        }, function() {
+            console.log(this.state.songHover);
         }
+        ));
+
     }
 
     render() {
