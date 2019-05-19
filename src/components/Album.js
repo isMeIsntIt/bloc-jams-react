@@ -12,7 +12,8 @@ class Album extends Component {
         this.state = {
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            songHover: false
         };
 
         this.audioElement = document.createElement('audio');
@@ -44,6 +45,12 @@ class Album extends Component {
         }
     }
 
+    toggleSongHover(){
+        console.log(this.state.songHover);
+        this.setState({songHover:this.state.songHover});
+        console.log(this.state.songHover);
+    }
+
     render() {
         return (
             <section className="album">
@@ -64,8 +71,8 @@ class Album extends Component {
                     <tbody>
                     {
                         this.state.album.songs.map((song, index) =>
-                            <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                                <td>{index + 1}</td>
+                            <tr className="song" key={index}  onMouseEnter={() => this.toggleSongHover()} onMouseLeave={() => this.toggleSongHover()}onClick={() => this.handleSongClick(song)} >
+                                <td><span className="icon ion-md-play">{index + 1}</span></td>
                                 <td>{song.title}</td>
                                 <td>{song.duration}</td>
                             </tr>
